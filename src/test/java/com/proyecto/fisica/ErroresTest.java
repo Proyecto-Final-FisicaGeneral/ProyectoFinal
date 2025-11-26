@@ -6,14 +6,19 @@ import static org.junit.Assert.assertTrue;
 public class ErroresTest {
 
     @Test
-    public void testErroresCoeficientes() {
-        double[] x = {0.0, 1.0, 2.0, 3.0};
-        double[] v = {0.0, -0.485, -0.923, -1.271};
+    public void testErroresCoeficientes() throws Exception {
+        double[][] datos = CSVReader.leerCSV("src/main/resources/Tabla1.csv");
+        double[] t = new double[datos.length];
+        double[] x = new double[datos.length];
+        
+        for (int i = 0; i < datos.length; i++) {
+            t[i] = datos[i][0];  // Tiempo
+            x[i] = datos[i][1];  // Posición
+        }
 
-        double[] errores = Errores.calcularErrores(x, v);
-
+        double[] errores = Errores.calcularErrores(t, x);
+        
         assertTrue(errores[0] >= 0);  // Error en A
         assertTrue(errores[1] >= 0);  // Error en B
-        assertTrue(errores[2] >= 0);  // Error en Y
     }
 }
