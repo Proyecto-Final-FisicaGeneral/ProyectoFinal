@@ -3,23 +3,23 @@ name: Java CI with Maven
 on:
   push:
     branches:
-      - main  # Ejecutar en push a main
+      - main  # Esto ejecutará los tests cuando se haga un push a la rama main
   pull_request:
     branches:
-      - main  # Ejecutar en PR hacia la rama main
+      - main  # Esto ejecutará los tests cuando se haga un PR hacia la rama main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Se ejecuta en un entorno Ubuntu
+    runs-on: ubuntu-latest  # Usamos Ubuntu como entorno de ejecución
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v2  # Clona el código desde GitHub
+        uses: actions/checkout@v2  # Clonamos el código desde GitHub
 
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
-          java-version: '11'  # Configura JDK 11
+          java-version: '11'  # Configura el JDK 11
 
       - name: Build with Maven
         run: mvn clean install  # Compila el proyecto con Maven
